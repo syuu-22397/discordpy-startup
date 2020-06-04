@@ -365,7 +365,7 @@ import random
 @bot.command(name='バグ報告')
 async def bug(ctx, *, text):
     color = random.randint(0x000000, 0xffffff)
-    for i in [718139987266109480 718054242065055747]:
+    for i in [718139987266109480,718054242065055747]:
         ch = bot.get_channel(i)
         await ch.send(embed=discord.Embed(title="意見ありがとうございます。", description=f"報告内容：{text}\n報告者：{ctx.author.name}({ctx.author.id})\nサーバー：{ctx.guild.name}:{ctx.guild.id}", color=color))
     await ctx.send("参考にします。")
