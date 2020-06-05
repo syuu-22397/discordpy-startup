@@ -16,6 +16,7 @@ token = os.environ['DISCORD_BOT_TOKEN']
 
 bot.remove_command('help')
 
+bot.teams = [546682137240403984]
 
 @bot.command()
 async def help(ctx):
