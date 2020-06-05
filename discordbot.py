@@ -9,6 +9,7 @@ import datetime
 import requests
 import psutil
 
+from cogs import evals
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -370,5 +371,9 @@ async def bug(ctx, *, text):
         await ch.send(embed=discord.Embed(title="意見ありがとうございます。", description=f"報告内容：{text}\n報告者：{ctx.author.name}({ctx.author.id})\nサーバー：{ctx.guild.name}:{ctx.guild.id}", color=color))
     await ctx.send("参考にします。")
     await ctx.message.delete()
+
+@bot.event
+async def on_ready():
+    evals.setup(bot)
                             
 bot.run(token)
