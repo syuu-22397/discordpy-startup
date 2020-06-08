@@ -1,5 +1,6 @@
 import time
 from discord.ext import commands
+from cogs import evals
 import os
 import random
 import traceback
