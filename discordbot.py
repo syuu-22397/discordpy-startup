@@ -4,31 +4,16 @@ import os
 import random
 import traceback
 import discord
+import time
 import datetime
 import requests
 import psutil
-import urllib.request
-import json
-import re
-from bs4 import BeautifulSoup
-from urllib import request
-# pip install Pillow↓
-# pip install numpy↓
-import numpy
-import PIL.Image
-import PIL.ImageDraw
-import PIL.ImageFont
-from PIL import ImageFont, ImageDraw, Image
 
-from cogs import evals
-# import m10s_music
 
 bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+token = ''
 
 bot.remove_command('help')
-# bot.load_extension('m10s_music')
-
 
 bot.teams = [546682137240403984]
 
