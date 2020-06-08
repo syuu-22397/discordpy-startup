@@ -377,4 +377,82 @@ async def bug(ctx, *, text):
 async def on_ready():
     evals.setup(bot)
                             
+                            
+         import discord
+import urllib.request
+import json
+import re
+from discord.ext import commands
+import random
+from bs4 import BeautifulSoup
+from urllib import request
+import time
+import datetime
+import requests
+
+client = commands.Bot(command_prefix='!!')
+
+citycodes = {
+    "土浦": '080020',
+    "水戸": '080010',
+    "札幌": '016010',
+    "仙台": '040010',
+    "東京": '130010',
+    "横浜": '140010',
+    "名古屋": '230010',
+    "大阪": '270000',
+    "広島": '340010',
+    "福岡": '400010',
+    "鹿児島": '460010',
+    "那覇": '471010'
+}
+
+
+@client.event
+async def on_ready():
+    await client.change_presence(activity=discord.Game(name="(Python)です"))
+    print("logged in as " + client.user.name)
+
+
+@client.command(name="天気予報", pass_context=True, aliases=["weather"])
+async def _weatherdayo(msg, address):
+    color = random.randint(0x000000, 0xffffff)
+    Url = "https://tenki.jp"
+    Req = requests.get(Url + "/search/?keyword=" + address)
+    Soup = BeautifulSoup(Req.text, 'lxml')
+    Sed = Soup.find_all(class_="search-entry-data")
+    HrfUrl = None
+    for val in Sed:
+        if val.find(class_="address").text.find("以下に掲載がない場合"):
+            HrfUrl = val.a.get("href")
+            # print(HrfUrl)
+    # myDict = {}
+    # 住所からhrefを取得
+    # if not(HrfUrl is None):
+    time.sleep(1)  # 一回requestを投げているので1秒待つ
+    Req = requests.get(Url + HrfUrl)
+    # print(Req)
+    bsObj = BeautifulSoup(Req.content, "html.parser")
+    today = bsObj.find(class_="today-weather")
+    weather = today.p.string
+    temp = today.div.find(class_="date-value-wrap")
+    temp = temp.find_all("dd")
+    temp_max = temp[0].span.string  # 最高気温
+    temp_max_diff = temp[1].string  # 最高気温の前日比
+    temp_min = temp[2].span.string  # 最低気温
+    temp_min_diff = temp[3].string  # 最低気温の前日比
+    todayni = bsObj.find(class_="tomorrow-weather")
+    weatherni = todayni.p.string
+    tempni = todayni.div.find(class_="date-value-wrap")
+    tempni = tempni.find_all("dd")
+    temp_maxni = tempni[0].span.string  # 最高気温
+    temp_max_diffni = tempni[1].string  # 最高気温の前日比
+    temp_minni = tempni[2].span.string  # 最低気温
+    temp_min_diffni = tempni[3].string  # 最低気温の前日比
+    await msg.send(embed=discord.Embed(title=f"{address}の今日の天気:{weather}\n明日の天気:{weatherni}", description=f"今日の最高気温:{temp_max} {temp_max_diff}\n今日の最低気温:{temp_min} {temp_min_diff}\n明日の最高気温:{temp_maxni} {temp_max_diffni}\n明日の最低気温:{temp_minni} {temp_min_diffni}", color=color))
+    # print("天気:{}".format(weather))
+    # print("最高気温:{} {}".format(temp_max,temp_max_diff))
+    # print("最低気温:{} {}".format(temp_min,temp_min_diff))
+
+client.run("とくん　プレゼントだよ！")                   
 bot.run(token)
