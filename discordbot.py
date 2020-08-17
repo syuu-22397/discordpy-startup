@@ -16,18 +16,18 @@ token = os.environ["DISCORD_BOT_TOKEN"]
 
 bot.remove_command('help')
 
-bot.teams = [546682137240403984]
+bot.teams = [623092854083813376]
 
 
 @bot.command()
 async def help(ctx):
-    await ctx.send(embed=discord.Embed(title="ヘルプコマンドです！", description=f"bot人数：botの数を調べます\npin：ピン留めします\nping：確認します\nping2：確認します\nui：ユーザーを調べます(使い方：ui ユーザーID)\n uuser：ユーザー調査です！(使い方：uuser ユーザーID)\nサイコロをふる：サイコロをふります！(使い方：サイコロをふる 1d6)\nチャンネル：指定したチャンネルに書き込みます！(使い方：チャンネル #(チャンネル名) てすと)\nチャンネル確認：チャンネルを確認します！\nチャンネル２：その場のチャンネルに書き込みます！(使い方：チャンネル２ てすと)\nユーザー人数：ユーザー人数を調べます！\nリンク：短縮リンクを作ります！(使い方：リンク URL)\n全体人数：サーバー人数を調べます！\n役職持ち確認：役職所持者を確認します！(使い方：役職持ち確認 役職名)\n時間確認：時間を確認します！\n野生：ネタコマンドです！\n鯖知りたい：サーバーの情報を知ることができます！(使い方：鯖知りたい サーバーID)\nバグ報告 (バグ報告します"))
+    await ctx.send(embed=discord.Embed(title="千華 -Chika- Bot ヘルプ一覧(仮)", description=f"注意/nこのヘルプは現在仮で用意されています。/nbot人数：botの数を調べます\npin：ピン留めします\nping：確認します\nping2：確認します\nui：ユーザーを調べます(使い方：ui ユーザーID)\n uuser：ユーザー調査です！(使い方：uuser ユーザーID)\nサイコロをふる：サイコロをふります！(使い方：サイコロをふる 1d6)\nチャンネル：指定したチャンネルに書き込みます！(使い方：チャンネル #(チャンネル名) てすと)\nチャンネル確認：チャンネルを確認します！\nチャンネル２：その場のチャンネルに書き込みます！(使い方：チャンネル２ てすと)\nユーザー人数：ユーザー人数を調べます！\nリンク：短縮リンクを作ります！(使い方：リンク URL)\n全体人数：サーバー人数を調べます！\n役職持ち確認：役職所持者を確認します！(使い方：役職持ち確認 役職名)\n時間確認：時間を確認します！\n野生：ネタコマンドです！\n密です：ネタコマンドです！\n鯖知りたい：サーバーの情報を知ることができます！(使い方：鯖知りたい サーバーID)\nバグ報告 (バグ報告します"))
 
 
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def help2(ctx):
-    await ctx.send(embed=discord.Embed(title="運営用ヘルプコマンドです！", description=f"チャンネルトピックいじります：チャンネルトピックをいじります！(使い方：チャンネルトピックいじります てすと)\nkick：対象者を蹴ります！(使い方：kick ユーザーID)\nban：対象者をBANします！(使い方：ban ユーザーID)\n役職付与系統：役職を付与します！(使い方：役職付与系統 メンバーの名前 役職名)\n脱出：サーバーから退室します！(使い方：脱出 サーバーID)\n使用率：使用率を調べます！\nvcから切断VCから強制切断します！(使い方：vcから切断 めんばあ)\nend：BOTを終了させます！\nプレイ中変更：プレイ中を変更します！(使い方：プレイ中変更 てすと)"))
+    await ctx.send(embed=discord.Embed(title="千華 -Chika- Bot 運営用ヘルプ(仮)", description=f"注意/nこの運営用ヘルプは現在仮で用意されています。/nチャンネルトピックいじります：チャンネルトピックをいじります！(使い方：チャンネルトピックいじります てすと)\nkick：対象者を蹴ります！(使い方：kick ユーザーID)\nban：対象者をBANします！(使い方：ban ユーザーID)\n役職付与系統：役職を付与します！(使い方：役職付与系統 メンバーの名前 役職名)\n脱出：サーバーから退室します！(使い方：脱出 サーバーID)\n使用率：使用率を調べます！\nvcから切断VCから強制切断します！(使い方：vcから切断 めんばあ)\nend：BOTを終了させます！\nプレイ中変更：プレイ中を変更します！(使い方：プレイ中変更 てすと)"))
 
 
 @bot.event
@@ -39,8 +39,8 @@ async def on_command_error(ctx, error):
 
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
+async def 密です(ctx):
+    await ctx.send('密閉・密集・密接・ソーシャルディスタンス')
 
 
 @bot.event
@@ -49,7 +49,7 @@ async def on_message(message):
         if message.author.bot:
             # もし、送信者がbotなら無視する
             return
-        GLOBAL_CH_NAME = "mikan-global"  # グローバルチャットのチャンネル名
+        GLOBAL_CH_NAME = "chika-global"  # グローバルチャットのチャンネル名
 
         if message.channel.name == GLOBAL_CH_NAME:
             # hoge-globalの名前をもつチャンネルに投稿されたので、メッセージを転送する
@@ -98,7 +98,7 @@ async def _yasei(ctx):
 
 @bot.command(name='チャンネルトピックいじります')
 async def channeltopic(ctx, channel: discord.TextChannel, *, topic):
-    if ctx.message.author.id == 708297062491619359:
+    if ctx.message.author.id == 623092854083813376:
         await channel.edit(topic=topic)
         await ctx.message.delete()
     else:
@@ -119,7 +119,7 @@ async def _channelninini(ctx, *, arg):
 
 @bot.command(name="kick")
 async def _kick(ctx, arg, *, riyuu):
-    if ctx.author.id == 708297062491619359:
+    if ctx.author.id == 623092854083813376:
         await ctx.guild.kick(discord.Object(arg))
         await ctx.send(f'実行者：{ctx.author.name}\n<@{arg}> をキックした。\n理由：{riyuu}')
     else:
@@ -128,7 +128,7 @@ async def _kick(ctx, arg, *, riyuu):
 
 @bot.command(name="ban")
 async def _ban2(ctx, arg, *, riyuu):
-    if ctx.author.id == 708297062491619359:
+    if ctx.author.id == 623092854083813376:
         await ctx.guild.ban(discord.Object(arg), reason=riyuu)
         await ctx.send(f'実行者：{ctx.author.name}\n<@{arg}> をえっついした。\n理由：{riyuu}')
     else:
@@ -150,7 +150,7 @@ async def daisuno_error(ctx, error):
 
 @bot.command(name="役職付与系統")
 async def _yakusyokunoyatu(ctx, member: discord.Member, role: discord.Role):
-    if ctx.author.id == 708297062491619359:
+    if ctx.author.id == 623092854083813376:
         await member.add_roles(role)
         await ctx.send(f'{member.name}さんに{role}を付与しました。')
     else:
@@ -251,7 +251,7 @@ async def _si(ctx, guild_id=None):
 
 @bot.command(name="脱出", pass_context=True)
 async def huttobasu(ctx, serverid: int):
-    if ctx.author.id == 708297062491619359:
+    if ctx.author.id == 623092854083813376:
         server = bot.get_guild(serverid)
         await server.leave()
         await ctx.send(f"{server.name}から退室しました。")
@@ -338,7 +338,7 @@ async def roleuserni(ctx, role: discord.Role):
 
 @bot.command(name="vcから切断")
 async def _vckikku(ctx, member: discord.Member):
-    if ctx.message.author.id == 708297062491619359:  # このidのとこは自身のIDに変更してね
+    if ctx.message.author.id == 623092854083813376:  # このidのとこは自身のIDに変更してね
         await member.move_to(None)
     else:
         await ctx.send("できません！")
@@ -346,7 +346,7 @@ async def _vckikku(ctx, member: discord.Member):
 
 @bot.command()
 async def end(ctx):
-    if ctx.message.author.id == 708297062491619359:  # このidのとこは自身のIDに変更してね
+    if ctx.message.author.id == 623092854083813376:  # このidのとこは自身のIDに変更してね
         color = random.randint(0x000000, 0xffffff)
         await ctx.send(embed=discord.Embed(title="シャットダウン！", description="終了します！", color=color))
         await bot.close()
@@ -358,7 +358,7 @@ async def end(ctx):
 @bot.command(name="プレイ中変更")
 # @commands.is_owner()
 async def pureityuudadada(ctx, *, st):
-    if ctx.message.author.id == 708297062491619359:  # このidのとこは自身のIDに変更してね
+    if ctx.message.author.id == 623092854083813376:  # このidのとこは自身のIDに変更してね
         await bot.change_presence(activity=discord.Game(name=st))
         await ctx.send(embed=discord.Embed(title="変更しました！", description=f"{st}"))
     else:
@@ -368,7 +368,7 @@ async def pureityuudadada(ctx, *, st):
 @bot.command(name='バグ報告')
 async def bug(ctx, *, text):
     color = random.randint(0x000000, 0xffffff)
-    for i in [718139987266109480, 718054242065055747]:
+    for i in [623092854083813376, 712517466206502922]:
         ch = bot.get_channel(i)
         await ch.send(embed=discord.Embed(title="意見ありがとうございます。", description=f"報告内容：{text}\n報告者：{ctx.author.name}({ctx.author.id})\nサーバー：{ctx.guild.name}:{ctx.guild.id}", color=color))
     await ctx.send("参考にします。")
@@ -377,11 +377,11 @@ async def bug(ctx, *, text):
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name="(Python)です"))
+    await bot.change_presence(activity=discord.Game(name="/help|仮サーバーにて運用中"))
     evals.setup(bot)
     print("logged in as " + bot.user.name)
     for channel in bot.get_all_channels():
-        if channel.name == '夏海起動時メッセージ':
+        if channel.name == '千華Bot起動時メッセージ':
             await channel.send('おはようございます！\n今日も頑張りましょう！')
 
 bot.run(token)
